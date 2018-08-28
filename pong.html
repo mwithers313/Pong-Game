@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
-<header>  
+<head>  
 	<title>Mike's Pong Game</title>
 	<link rel="stylesheet" href="pong.css">
-</header>
+	<script src="jquery-3.3.1.min.js"></script>
+
+</head>
    
 
 <body onload= "startGame()">
@@ -11,13 +13,68 @@
 <h1 id = "playOne">Player One: <span id="score1">0</span></h1>
 <h1 id ="playTwo">Player Two: <span id="score2">0</span></h1>
 <hr>
-<div id="paddle1"></div>
-<div id="ball"></div>
-<div id="paddle2"></div>
+<div id="court">
+	<div id="paddle1"></div>
+	<div id="ball"></div>
+	<div id="paddle2"></div>	
+</div>
+
 
 
 <script type="text/javascript" src= "game.js"></script>
 <script type="text/css" src= "pong.css"></script>
+<script>
+	
 
-
+var bodyElement = document.getElementById("ball");
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+ 
+var delay = 0;
+ 
+function changeColor() {
+    delay++;
+     
+    if (delay > 3) {
+        bodyElement.style.backgroundColor = getRandomColor();
+        delay = 0;
+    }
+ 
+    requestAnimationFrame(changeColor);
+}
+changeColor();           
+ 
+function getRandomColor() {
+    // creating a random number between 0 and 255
+    var r = Math.floor(Math.random()*256);
+    var g = Math.floor(Math.random()*256);
+    var b = Math.floor(Math.random()*256);
+     
+    // going from decimal to hex
+    var hexR = r.toString(16);
+    var hexG = g.toString(16);
+    var hexB = b.toString(16);
+     
+    // making sure single character values are prepended with a "0"
+    if (hexR.length == 1) {
+        hexR = "0" + hexR;
+    }
+     
+    if (hexG.length == 1) {
+        hexG = "0" + hexG;
+    }
+ 
+    if (hexB.length == 1) {
+        hexB = "0" + hexB;
+    }
+ 
+    // creating the hex value by concatenatening the string values
+    var hexColor = "#" + hexR + hexG + hexB;
+    return hexColor.toUpperCase();
+}
+</script>
 </body>
+</html>

@@ -81,7 +81,7 @@ document.addEventListener('keyup', function (e) {
 
 
 
-window.setInterval(function show() {
+window.setInterval(function makeStuffMove() {
 	playerOnePaddle.position += playerOnePaddle.speed;
 	playerTwoPaddle.position += playerTwoPaddle.speed;
 	ball.yAxis += ball.yValueSpeed;
@@ -112,31 +112,40 @@ window.setInterval(function show() {
 	}
 
 
+
+
 	if (ball.xAxis <= playerOnePaddle.width) {
 		if (ball.yAxis > playerOnePaddle.position && ball.yAxis < playerOnePaddle.position + playerOnePaddle.height) {
 			ball.xValueSpeed = -ball.xValueSpeed+2; 
 
+
+
+
 		} else {
 			playerOnePaddle.point++;
-			if (playerOnePaddle.point == 10){
-			document.getElementById('pong').innerHTML = "Player One Wins!";
+			if (playerOnePaddle.point == 3){
+			document.getElementById('pong').innerHTML = "Player Two Wins!";
+				document.getElementById("pong").style.left = 25 + "%";
+
 		}
-			startGame();
-		}
-	}
+			startGame();}}
+
+
 
 	if (ball.xAxis >= window.innerWidth - ball.radius - playerTwoPaddle.width) {
 		if (ball.yAxis > playerTwoPaddle.position && ball.yAxis < playerTwoPaddle.position + playerTwoPaddle.height) {
 			ball.xValueSpeed = -ball.xValueSpeed-2;
 
+		
+
 		} else {
 			playerTwoPaddle.point++
-			if (playerTwoPaddle.point == 10){
-			document.getElementById('pong').innerHTML = "Player Two Wins!";
+			if (playerTwoPaddle.point == 3){
+			document.getElementById('pong').innerHTML = "Player One Wins!";
+				document.getElementById("pong").style.left = 35 + "%";
+
 			}
-			startGame();
-		}
-	}
+			startGame();}}
 
 
 
@@ -144,7 +153,7 @@ window.setInterval(function show() {
 	document.getElementById("paddle2").style.top = (playerTwoPaddle.position) + "px";
 	document.getElementById("ball").style.top = (ball.yAxis) + "px";
 	document.getElementById("ball").style.left = (ball.xAxis) + "px";
-	document.getElementById('score1').innerHTML = playerOnePaddle.point;
-	document.getElementById('score2').innerHTML = playerTwoPaddle.point;
+	document.getElementById('score2').innerHTML = playerOnePaddle.point;
+	document.getElementById('score1').innerHTML = playerTwoPaddle.point;
 }, 1000/60);
 
