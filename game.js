@@ -1,25 +1,31 @@
+
+// window width 475
+// window heigh 1277
+
+
 var playerOnePaddle = { 
+
 height: 160,
 width: 20,
 speed: 0,
 position: 460,
 point: 0,
-color: "",
 }
 
 
 var playerTwoPaddle = {
+
 height: 160,
 width: 20,
 speed: 0,
 position: 460,
 point: 0,
-color: "",
 
 }
 
 
 var ball = {
+
 yAxis: 510,
 xAxis: 820,
 yValueSpeed: 0,
@@ -27,7 +33,6 @@ xValueSpeed: 0,
 radius: 25,
 
 }
-
 
 
 
@@ -46,7 +51,7 @@ function startGame() {
 };
 
 
-
+//makes paddles move while key is held down
 document.addEventListener('keydown', function (e) {
      if (e.keyCode == 87 || e.which == 87) { // W key
       playerOnePaddle.speed = -10;
@@ -63,7 +68,7 @@ document.addEventListener('keydown', function (e) {
 }, false);
 
 
-
+//makes paddles stop when key is up
 document.addEventListener('keyup', function (e) {
 	if (e.keyCode == 87 || e.which == 87) {
 		playerOnePaddle.speed = 0;
@@ -88,7 +93,7 @@ window.setInterval(function makeStuffMove() {
 	ball.xAxis += ball.xValueSpeed;
 
 
-
+//the below set of statements keeps the paddles on the board
 
 	if (playerOnePaddle.position <= 160) {
 		playerOnePaddle.position = 160;
@@ -107,21 +112,28 @@ window.setInterval(function makeStuffMove() {
 
 
 
+
+
+
+
+
+//makes ball bounce off the top and bottom of window
 	if (ball.yAxis <= 160 || ball.yAxis >= window.innerHeight - ball.radius) {
 		ball.yValueSpeed = -ball.yValueSpeed
 	}
 
 
-
-
+	
+//makes the ball bounce off of playerOnePaddle
 	if (ball.xAxis <= playerOnePaddle.width) {
 		if (ball.yAxis > playerOnePaddle.position && ball.yAxis < playerOnePaddle.position + playerOnePaddle.height) {
-			ball.xValueSpeed = -ball.xValueSpeed+2; 
+			
+			ball.xValueSpeed = -ball.xValueSpeed+2; //increases speed
 
 
 
 
-		} else {
+		} else {//means that they socred 
 			playerOnePaddle.point++;
 			if (playerOnePaddle.point == 3){
 			document.getElementById('pong').innerHTML = "Player Two Wins!";
@@ -129,6 +141,10 @@ window.setInterval(function makeStuffMove() {
 
 		}
 			startGame();}}
+
+
+
+
 
 
 

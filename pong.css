@@ -3,9 +3,9 @@
 position:absolute;
 right:0px;
 top:460px;
-width:10px;
-height:150px;
-background-color:black;
+width:20px;
+height:160px;
+background-color:red;
 
 }
 
@@ -13,9 +13,18 @@ background-color:black;
 position:absolute;
 left:0px;
 top:460px;
+width:20px;
+height:160px;
+background-color:red;
+}
+
+#obstacle {
+position:absolute;
+left: 676px;
+top:350px;
 width:10px;
 height:150px;
-background-color:black;
+background-color:red;
 }
 
 #ball {
