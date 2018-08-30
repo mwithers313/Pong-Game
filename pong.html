@@ -27,9 +27,10 @@
 	
 
 var bodyElement = document.getElementById("ball");
+        var pallde1 = document.getElementById("paddle1")
+        var pallde2 = document.getElementById("paddle2")
 
 
- 
 var requestAnimationFrame = window.requestAnimationFrame || 
                             window.mozRequestAnimationFrame || 
                             window.webkitRequestAnimationFrame || 
@@ -41,6 +42,9 @@ function changeColor() {
     delay++;
      
     if (delay > 3) {
+                paddle1.style.backgroundColor = getRandomColor();
+        pallde2.style.backgroundColor = getRandomColor();
+
         bodyElement.style.backgroundColor = getRandomColor();
         delay = 0;
     }

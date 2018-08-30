@@ -130,6 +130,7 @@ window.setInterval(function makeStuffMove() {
 			
 			ball.xValueSpeed = -ball.xValueSpeed+2; //increases speed
 
+		// document.getElementById("paddle1").style.background = getRandomColor();
 
 
 
@@ -137,7 +138,10 @@ window.setInterval(function makeStuffMove() {
 			playerOnePaddle.point++;
 			if (playerOnePaddle.point == 3){
 			document.getElementById('pong').innerHTML = "Player Two Wins!";
+				
 				document.getElementById("pong").style.left = 25 + "%";
+
+
 
 		}
 			startGame();}}
@@ -152,6 +156,9 @@ window.setInterval(function makeStuffMove() {
 		if (ball.yAxis > playerTwoPaddle.position && ball.yAxis < playerTwoPaddle.position + playerTwoPaddle.height) {
 			ball.xValueSpeed = -ball.xValueSpeed-2;
 
+			//document.getElementById("paddle2").style.background = getRandomColor();
+
+
 		
 
 		} else {
@@ -159,7 +166,7 @@ window.setInterval(function makeStuffMove() {
 			if (playerTwoPaddle.point == 3){
 			document.getElementById('pong').innerHTML = "Player One Wins!";
 				document.getElementById("pong").style.left = 35 + "%";
-
+s
 			}
 			startGame();}}
 
