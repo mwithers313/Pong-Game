@@ -3,6 +3,15 @@
 // window heigh 1277
 
 
+
+var nwWall = {
+
+position: 160,
+width: 20,
+height:100,
+
+}
+
 var playerOnePaddle = { 
 
 height: 160,
@@ -10,6 +19,26 @@ width: 20,
 speed: 0,
 position: 460,
 point: 0,
+}
+
+var swWall = {
+
+position: 584,
+width: 20,
+height:100,
+
+}
+
+
+
+
+
+var neWall = {
+
+position: 160,
+width: 20,
+height:100,
+
 }
 
 
@@ -22,6 +51,17 @@ position: 460,
 point: 0,
 
 }
+
+var seWall = {
+
+position: 584,
+width: 20,
+height:100,
+
+}
+
+
+
 
 
 var ball = {
@@ -95,17 +135,17 @@ window.setInterval(function makeStuffMove() {
 
 //the below set of statements keeps the paddles on the board
 
-	if (playerOnePaddle.position <= 160) {
-		playerOnePaddle.position = 160;
+	if (playerOnePaddle.position <= nwWall.position + nwWall.height) {
+		playerOnePaddle.position = nwWall.position + nwWall.height;
 	}
-	if (playerTwoPaddle.position <= 160) {
-		playerTwoPaddle.position = 160;
+	if (playerTwoPaddle.position <= neWall.position + neWall.height) {
+		playerTwoPaddle.position = neWall.position + neWall.height;
 	}
-	if (playerOnePaddle.position >= window.innerHeight - playerOnePaddle.height) {
-		playerOnePaddle.position = window.innerHeight - playerOnePaddle.height;
+	if (playerOnePaddle.position + playerOnePaddle.height > swWall.position) {
+		playerOnePaddle.position = swWall.position - playerOnePaddle.height;
 	}
-	if (playerTwoPaddle.position > window.innerHeight - playerTwoPaddle.height) {
-		playerTwoPaddle.position = window.innerHeight - playerTwoPaddle.height;
+	if (playerTwoPaddle.position + playerTwoPaddle.height > swWall.position) {
+		playerTwoPaddle.position = seWall.position - playerTwoPaddle.height;
 	}
 
 
@@ -126,24 +166,59 @@ window.setInterval(function makeStuffMove() {
 	
 //makes the ball bounce off of playerOnePaddle
 	if (ball.xAxis <= playerOnePaddle.width) {
-		if (ball.yAxis > playerOnePaddle.position && ball.yAxis < playerOnePaddle.position + playerOnePaddle.height) {
+
+
+		if (ball.yAxis >= playerOnePaddle.position && ball.yAxis <= playerOnePaddle.position  + playerOnePaddle.height){
 			
 			ball.xValueSpeed = -ball.xValueSpeed+2; //increases speed
 
-		// document.getElementById("paddle1").style.background = getRandomColor();
+			
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
 
 
 
-		} else {//means that they socred 
+
+
+//makes ball bounce of nwWall
+
+		} else if (ball.yAxis >= nwWall.position && ball.yAxis <= nwWall.position  + nwWall.height){
+
+			ball.xAxis+= 10;
+
+		ball.xValueSpeed = -ball.xValueSpeed+2; //increases speed
+
+
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
+
+
+//makes ball bounce off swWall
+		
+		} else if (ball.yAxis <= swWall.position + swWall.height && ball.yAxis >= swWall.position){
+
+			ball.xAxis+= 10;
+
+		ball.xValueSpeed = -ball.xValueSpeed+2; //increases speed
+	
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
+
+
+
+		}else {//means that they socred 
 			playerOnePaddle.point++;
 			if (playerOnePaddle.point == 3){
 			document.getElementById('pong').innerHTML = "Player Two Wins!";
 				
 				document.getElementById("pong").style.left = 25 + "%";
-
-
-
-		}
+}
 			startGame();}}
 
 
@@ -153,10 +228,51 @@ window.setInterval(function makeStuffMove() {
 
 
 	if (ball.xAxis >= window.innerWidth - ball.radius - playerTwoPaddle.width) {
-		if (ball.yAxis > playerTwoPaddle.position && ball.yAxis < playerTwoPaddle.position + playerTwoPaddle.height) {
+
+		if (ball.yAxis >= playerTwoPaddle.position && ball.yAxis <= playerTwoPaddle.position + playerTwoPaddle.height) {
 			ball.xValueSpeed = -ball.xValueSpeed-2;
 
 			//document.getElementById("paddle2").style.background = getRandomColor();
+
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
+
+
+
+
+		} else if (ball.yAxis >= neWall.position && ball.yAxis <= neWall.position  + neWall.height){
+
+			ball.xAxis-= 10;
+
+		ball.xValueSpeed = -ball.xValueSpeed-2; //increases speed
+		
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
+
+		
+		} else if (ball.yAxis <= seWall.position + seWall.height && ball.yAxis >= seWall.position){
+
+		
+
+
+			ball.xAxis-= 10;
+
+		ball.xValueSpeed = -ball.xValueSpeed-2; //increases speed
+		
+				document.getElementById("swWall").style.background = getRandomColor();
+				document.getElementById("seWall").style.background = getRandomColor();
+				document.getElementById("nwWall").style.background = getRandomColor();
+				document.getElementById("neWall").style.background = getRandomColor();
+
+
+
+
+
+
 
 
 		
@@ -166,7 +282,7 @@ window.setInterval(function makeStuffMove() {
 			if (playerTwoPaddle.point == 3){
 			document.getElementById('pong').innerHTML = "Player One Wins!";
 				document.getElementById("pong").style.left = 35 + "%";
-s
+
 			}
 			startGame();}}
 
